@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html style="height: 100%;">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>flex布局样式速查</title>
+<style>
+
+  .flex-row {
+    display: flex;
+    flex-flow: row nowrap;
+  }
+
+  .flex-column {
+    display: flex;
+    flex-flow: column nowrap;
+  }
+
+  .flex-row.wrap, .flex-column.wrap {
+    flex-wrap: wrap;
+  }
+
+  .flex-row.x-wrap, .flex-column.x-wrap {
+    flex-wrap: wrap-reverse;
+  }
+
+  .flex-row.mx-start, .flex-column.mx-start {
+    justify-content: flex-start;
+  }
+
+  .flex-row.mx-end, .flex-column.mx-end {
+    justify-content: flex-end;
+  }
+
+  .flex-row.mx-center, .flex-column.mx-center {
+    justify-content: center;
+  }
+
+  .flex-row.mx-between, .flex-column.mx-between {
+    justify-content: space-between;
+  }
+
+  .flex-row.mx-around, .flex-column.mx-around {
+    justify-content: space-around;
+  }
+
+  .flex-row.mx-evenly, .flex-column.mx-evenly {
+    justify-content: space-evenly;
+  }
+
+  .flex-row.sx-start, .flex-column.sx-start {
+    align-items: flex-start;
+  }
+
+  .flex-row.sx-end, .flex-column.sx-end {
+    align-items: flex-end;
+  }
+
+  .flex-row.sx-center, .flex-column.sx-center {
+    align-items: center;
+  }
+
+  .flex-row.sx-stretch, .flex-column.sx-stretch {
+    align-items: stretch;
+  }
+
+  .flex-txt-center {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .flex-txt-left-center {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  .flex-txt-right-center {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  .flex-txt-top-center {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: flex-start;
+  }
+
+  .flex-txt-bottom-center {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: flex-end;
+  }
+
+.lbx{
+  flex:0 0 150px;
+  margin-right:5px;
+}
+.testCld{
+  border:1px solid #ff0000;
+}
+</style>
+<script type="text/javascript">
+function g(id){
+  return document.getElementById(id);
+}
+function doShow(){
+  let arr = [];
+  arr.push(g('sltA').value);
+  arr.push(g('sltB').value);
+  arr.push(g('sltC').value);
+  if(g('sltD').value!='') arr.push(g('sltD').value);
+  let className = arr.join(' ');
+  g('lbOutBoxClass').innerHTML = '&lt;div class="<label style=\'color:#ff0000;\'>'+className+'</label>">&lt;/div&gt;';
+  g('testBox').className = className;
+
+  let zz = g('sltAP').value;
+  let styleFlex = g('sltAV1').value + ' ' + g('sltAV2').value + ' ' + (zz=='auto' ? 'auto' : g('txtAX').value+zz);
+  g('lbBoxA').innerHTML = '&lt;div style="<label style=\'color:#ff0000;\'>flex: '+styleFlex+';</label>">&lt;/div&gt;';
+  g('testCldA').style.flex = styleFlex;
+
+  zz = g('sltCP').value;
+  styleFlex = g('sltCV1').value + ' ' + g('sltCV2').value + ' ' + (zz=='auto' ? 'auto' : g('txtCX').value+zz);
+  g('lbBoxC').innerHTML = '&lt;div style="<label style=\'color:#ff0000;\'>flex: '+styleFlex+';</label>">&lt;/div&gt;';
+  g('testCldC').style.flex = styleFlex;
+}
+
+
+function doTShow(){
+  let className = g('sltT').value;
+  g('lbTextBoxClass').innerHTML = '&lt;div class="<label style=\'color:#ff0000;\'>'+className+'</label>">&lt;/div&gt;';
+  g('divTextBox').className = className;
+}
+
+window.onload = function(){
+  doShow();
+  doTShow();
+};
+
+</script>
+</head>
+<body>
+
+<div class="flex-row mx-between sx-stretch">
+  <div class="flex-column mx-start sx-stretch" style="flex:0 0 500px;">
+    <div class="flex-row">
+        <div class="lbx flex-txt-right-center">子元素排布</div>
+        <select id="sltA" onchange="doShow()">
+          <option value="flex-row">横向</option>
+          <option value="flex-column">枞向</option>
+        </select>
+    </div>
+    <div class="flex-row">
+        <div class="lbx flex-txt-right-center">子元素主轴对齐</div>
+        <select id="sltB" onchange="doShow()">
+          <option value="mx-start">开始端</option>
+          <option value="mx-end">结束端</option>
+          <option value="mx-center">居中</option>
+          <option value="mx-between">两端</option>
+          <option value="mx-around">环绕</option>
+          <option value="mx-evenly">等分</option>
+        </select>
+    </div>
+    <div class="flex-row">
+        <div class="lbx flex-txt-right-center">子元素次轴对齐</div>
+        <select id="sltC" onchange="doShow()">
+          <option value="sx-start">开始端</option>
+          <option value="sx-end">结束端</option>
+          <option value="sx-center">居中</option>
+          <option value="sx-stretch">两端伸展</option>
+        </select>
+    </div>
+    <div class="flex-row">
+        <div class="lbx flex-txt-right-center">换行</div>
+        <select id="sltD" onchange="doShow()">
+          <option value="">不换行</option>
+          <option value="wrap">换行</option>
+          <option value="x-wrap">换行反转</option>
+        </select>
+    </div>
+    <div style="flex:0 0 1px;margin: 10px;background-color: #9E9E9E;"></div>
+    <div class="flex-row">
+      <div class="">子元素A 占据</div>
+      <input id="txtAX" type="text" value="auto" style="width:50px;flex:0 0 50px;" onchange="doShow()" disabled>
+      <select id="sltAP" onchange="g('txtAX').disabled=this.value=='auto';if(this.value=='auto'){g('txtAX').value='auto';}else{if(isNaN(Number(g('txtAX').value))){ g('txtAX').value='0'; }}doShow();">
+        <option value="auto">auto</option>
+        <option value="px">px</option>
+        <option value="%">%</option>
+      </select>
+      <select id="sltAV1" onchange="doShow()">
+        <option value="0">不自动伸展</option>
+        <option value="1">自动伸展</option>
+      </select>
+      <select id="sltAV2" onchange="doShow()">
+        <option value="0">不自动缩小</option>
+        <option value="1">自动缩小</option>
+      </select>
+    </div>
+    <div style="flex:0 0 1px;margin: 10px;background-color: #9E9E9E;"></div>
+    <div class="flex-row">
+      <div class="">子元素C 占据</div>
+      <input id="txtCX" type="text" value="auto" style="width:50px;flex:0 0 50px;" onchange="doShow()" disabled>
+      <select id="sltCP" onchange="g('txtCX').disabled=this.value=='auto';if(this.value=='auto'){g('txtCX').value='auto';}else{if(isNaN(Number(g('txtCX').value))){ g('txtCX').value='0'; }}doShow();">
+        <option value="auto">auto</option>
+        <option value="px">px</option>
+        <option value="%">%</option>
+      </select>
+      <select id="sltCV1" onchange="doShow()">
+        <option value="0">不自动伸展</option>
+        <option value="1">自动伸展</option>
+      </select>
+      <select id="sltCV2" onchange="doShow()">
+        <option value="0">不自动缩小</option>
+        <option value="1">自动缩小</option>
+      </select>
+    </div>
+  </div>
+  <div class="flex-column mx-start sx-stretch" style="flex:1 1 auto;">
+    <div id="testBox" style="border:2px solid #0000ff;width:500px;height:500px;">
+        <div id="testCldA" class="testCld">A</div>
+        <div class="testCld">B</div>
+        <div id="testCldC" class="testCld">C</div>
+        <div class="testCld">D</div>
+        <div class="testCld">E</div>
+    </div>
+    <div>外层盒子：<div id="lbOutBoxClass"></div></div>
+    <div>元素A：<div id="lbBoxA"></div></div>
+    <div>元素C：<div id="lbBoxC"></div></div>
+  </div>
+</div>
+<div style="margin-top:50px;"class="flex-row mx-start sx-start">
+  <div class="flex-row" style="flex:0 0 500px;">
+      <div class="lbx flex-txt-right-center">文字排版</div>
+      <select id="sltT" onchange="doTShow()">
+        <option value="flex-txt-center">居中</option>
+        <option value="flex-txt-left-center">左对齐上下居中</option>
+        <option value="flex-txt-right-center">右对齐上下居中</option>
+        <option value="flex-txt-top-center">顶端对齐左右居中</option>
+        <option value="flex-txt-bottom-center">底端对齐左右居中</option>
+      </select>
+  </div>
+  <div>
+    <div id="divTextBox" style="border:1px solid #0000ff;width:500px;height:150px;">
+      为了爱美的哈韩朋友有更便捷的渠道
+    </div>
+    <div>盒子：<div id="lbTextBoxClass"></div></div>
+  </div>
+</div>
+</body>
+</html>
